@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.WorksMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.Works" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="little_picture" property="littlePicture" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="main_picture" property="mainPicture" jdbcType="VARCHAR" />
+    <result column="little_word" property="littleWord" jdbcType="VARCHAR" />
+    <result column="main_word" property="mainWord" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, little_picture, link, main_picture, little_word, main_word
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from works
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="select" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM works
+    <where>
+      <if test="name !=null">
+        name like CONCAT('%',#{name},'%')
+      </if>
+      <if test="name !=null">
+        or little_word like concat('%',#{name},'%')
+      </if>
+      <if test="secondId !=null">
+       and   second_id=#{secondId}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from works
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Works" >
+    insert into works (id, name, little_picture, 
+      link, main_picture, little_word, 
+      main_word)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{littlePicture,jdbcType=VARCHAR}, 
+      #{link,jdbcType=VARCHAR}, #{mainPicture,jdbcType=VARCHAR}, #{littleWord,jdbcType=VARCHAR}, 
+      #{mainWord,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Works" >
+    insert into works
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="littlePicture != null" >
+        little_picture,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="mainPicture != null" >
+        main_picture,
+      </if>
+      <if test="littleWord != null" >
+        little_word,
+      </if>
+      <if test="mainWord != null" >
+        main_word,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="littlePicture != null" >
+        #{littlePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPicture != null" >
+        #{mainPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="littleWord != null" >
+        #{littleWord,jdbcType=VARCHAR},
+      </if>
+      <if test="mainWord != null" >
+        #{mainWord,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Works" >
+    update works
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="littlePicture != null" >
+        little_picture = #{littlePicture,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="mainPicture != null" >
+        main_picture = #{mainPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="littleWord != null" >
+        little_word = #{littleWord,jdbcType=VARCHAR},
+      </if>
+      <if test="mainWord != null" >
+        main_word = #{mainWord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Works" >
+    update works
+    set name = #{name,jdbcType=VARCHAR},
+      little_picture = #{littlePicture,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      main_picture = #{mainPicture,jdbcType=VARCHAR},
+      little_word = #{littleWord,jdbcType=VARCHAR},
+      main_word = #{mainWord,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

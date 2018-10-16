@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.SecondMapper">
+    <resultMap id="BaseResultMap" type="com.entity.Second">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="BIT"/>
+        <result column="first_id" property="firstId" jdbcType="BIGINT"/>
+        <result column="create_at" property="createAt" jdbcType="BIGINT"/>
+        <result column="update_at" property="updateAt" jdbcType="BIGINT"/>
+        <result column="works_id" property="worksId" jdbcType="BIGINT"/>
+        <result column="update_by" property="updateBy" jdbcType="BIGINT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, status, first_id, create_at, update_at, works_id, update_by
+  </sql>
+    <select id="select" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from second
+        <where>
+            <if test="name !=null">
+                name=#{name}
+            </if>
+            <if test="status !=null">
+                and status=#{status}
+            </if>
+            <if test="firstId !=null">
+                and first_id=#{firstId}
+            </if>
+        </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from second
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.entity.Second">
+    insert into second (id, name, status, 
+      first_id, create_at, update_at, 
+      works_id, update_by)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{firstId,jdbcType=BIGINT}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
+      #{worksId,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT})
+  </insert>
+    <insert id="insertSelective" parameterType="com.entity.Second">
+        insert into second
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="firstId != null">
+                first_id,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+            <if test="worksId != null">
+                works_id,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIT},
+            </if>
+            <if test="firstId != null">
+                #{firstId,jdbcType=BIGINT},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="worksId != null">
+                #{worksId,jdbcType=BIGINT},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.entity.Second">
+        update second
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIT},
+            </if>
+            <if test="firstId != null">
+                first_id = #{firstId,jdbcType=BIGINT},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=BIGINT},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt,jdbcType=BIGINT},
+            </if>
+            <if test="worksId != null">
+                works_id = #{worksId,jdbcType=BIGINT},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.entity.Second">
+    update second
+    set name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      first_id = #{firstId,jdbcType=BIGINT},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT},
+      works_id = #{worksId,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
