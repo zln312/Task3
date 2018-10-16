@@ -14,14 +14,14 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/words")
+
 public class WordsController {
     private Logger logger = Logger.getLogger(WordsController.class);
 
     @Autowired
     private WordsService wordsService;
 
-    @RequestMapping(value = "/{worksId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/words/{worksId}", method = RequestMethod.GET)
     public ModelAndView show(ModelAndView modelAndView, @PathVariable("worksId") long worksId) {
         List words = wordsService.selectByWorksId(worksId);
         if (words == null) {
@@ -34,7 +34,7 @@ public class WordsController {
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "words",method = RequestMethod.POST)
     public ModelAndView add(ModelAndView modelAndView, String visitor, String content, long worksId) {
         logger.info("访客：" + visitor + "  内容:" + content + " 所属作品id:" + worksId);
         Words words = new Words();

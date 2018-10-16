@@ -29,8 +29,8 @@ public class WordsServiceImpl implements WordsService {
     }
 
     @Override
-    public List selectByWorksId(Long WorksId) {
-        return wordsMapper.selectByWorksId(WorksId);
+    public List selectByWorksId(Long worksId) {
+        return wordsMapper.selectByWorksId(worksId);
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface ReplyService {
 
     int insertSelective(Reply record);
 
-    Reply selectByPrimaryKey(Long WordsId);
+    Reply selectByPrimaryKey(Long wordsId);
 
     int updateByPrimaryKeySelective(Reply record);
 

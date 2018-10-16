@@ -27,8 +27,8 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public Reply selectByPrimaryKey(Long WordsId) {
-        return selectByPrimaryKey(WordsId);
+    public Reply selectByPrimaryKey(Long wordsId) {
+        return replyMapper.selectByPrimaryKey(wordsId);
     }
 
     @Override

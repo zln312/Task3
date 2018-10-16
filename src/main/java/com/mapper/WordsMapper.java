@@ -11,7 +11,7 @@ public interface WordsMapper {
 
     int insertSelective(Words record);
 
-    List selectByWorksId(Long WorksId);
+    List selectByWorksId(Long worksId);
 
     int updateByPrimaryKeySelective(Words record);
 
