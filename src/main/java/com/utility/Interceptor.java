@@ -46,4 +46,5 @@ public class Interceptor {
         logger.error(joinPoint.getSignature() + "Controller——方法用时——" + cost + "毫秒");
         return object;
     }
+
 }

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.apache.log4j.Logger" %> <%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/9/20
@@ -9,6 +9,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<% Logger logger=Logger.getLogger(page.getClass());%>
+<% long start=System.currentTimeMillis();%>
 <json:object>
     <json:property name="code" value="${code}"/>
     <json:property name="massage">
@@ -22,3 +24,4 @@
         </json:object>
     </json:array>
 </json:object>
+<%logger.error(System.currentTimeMillis()-start);%>

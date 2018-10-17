@@ -34,7 +34,7 @@ public class WordsController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "words",method = RequestMethod.POST)
+    @RequestMapping(value = "/words",method = RequestMethod.POST)
     public ModelAndView add(ModelAndView modelAndView, String visitor, String content, long worksId) {
         logger.info("访客：" + visitor + "  内容:" + content + " 所属作品id:" + worksId);
         Words words = new Words();

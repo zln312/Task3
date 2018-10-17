@@ -1,4 +1,4 @@
-<%--
+<%@ page import="org.apache.log4j.Logger" %>
 Created by IntelliJ IDEA.
 User: Administrator
 Date: 2018/9/20
@@ -9,7 +9,8 @@ To change this template use File | Settings | File Templates.
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<% long start=System.currentTimeMillis();%>
+<% Logger logger = Logger.getLogger(Object.class);%>
+<% long start = System.currentTimeMillis();%>
 <json:object>
     <json:property name="code" value="${code}"/>
     <json:property name="massage">
@@ -19,4 +20,5 @@ To change this template use File | Settings | File Templates.
 </json:object>
 
 
-<%=System.currentTimeMillis()-start%>
+<%=System.currentTimeMillis() - start%>
+<%logger.error(System.currentTimeMillis()-start);%>;
